@@ -26,6 +26,10 @@ BuildRequires: doxygen
 BuildRequires: cmake(Qt6ToolsTools)
 BuildRequires: cmake(Qt6)
 BuildRequires: cmake(Qt6QuickTest)
+BuildRequires: pkgconfig(libudev)
+BuildRequires: pkgconfig(shared-mime-info)
+# Intentionally not adding a BR on the optional fam/gamin dep.
+# Those tools add very little, and have huge drawbacks.
 Requires: %{libname} = %{EVRD}
 
 %description
