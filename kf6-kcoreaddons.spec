@@ -60,10 +60,15 @@ Qt addon library with a collection of non-GUI utilities
 
 %prep
 %autosetup -p1 -n kcoreaddons-%{?git:master}%{!?git:%{version}}
+# Disabling PCH on aarch64 below is a workaround for a compile time
+# error because of an alleged PIE mismatch between PCHs and test cases
 %cmake \
 	-DBUILD_QCH:BOOL=ON \
 	-DBUILD_WITH_QT6:BOOL=ON \
 	-DKDE_INSTALL_USE_QT_SYS_PATHS:BOOL=ON \
+%ifarch %{aarch64}
+	-DENABLE_PCH:BOOL=OFF \
+%endif
 	-G Ninja
 
 %build
