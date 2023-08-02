@@ -11,6 +11,8 @@ Name: kf6-kcoreaddons
 Version: 5.240.0
 Release: %{?git:0.%{git}.}1
 Source0: https://invent.kde.org/frameworks/kcoreaddons/-/archive/master/kcoreaddons-master.tar.bz2#/kcoreaddons-%{git}.tar.bz2
+# FIXME why is this needed (and only on aarch64 too)?
+Patch0: kcoreaddons-aarch64-buildfix.patch
 Summary: Qt addon library with a collection of non-GUI utilities
 URL: https://invent.kde.org/frameworks/kcoreaddons
 License: CC0-1.0 LGPL-2.0+ LGPL-2.1 LGPL-3.0
