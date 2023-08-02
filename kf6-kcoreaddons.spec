@@ -1,6 +1,6 @@
 %define libname %mklibname KF6CoreAddons
 %define devname %mklibname KF6CoreAddons -d
-%define git 20230726
+%define git 20230802
 
 # This is only required in a BSD context, but rpm's
 # cmake dependency generator doesn't understand
