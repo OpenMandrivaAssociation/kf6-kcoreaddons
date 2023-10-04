@@ -1,6 +1,6 @@
 %define libname %mklibname KF6CoreAddons
 %define devname %mklibname KF6CoreAddons -d
-%define git 20230927
+%define git 20231004
 
 # This is only required in a BSD context, but rpm's
 # cmake dependency generator doesn't understand
@@ -89,7 +89,6 @@ Qt addon library with a collection of non-GUI utilities
 %files -n %{devname}
 %{_includedir}/KF6/KCoreAddons
 %{_libdir}/cmake/KF6CoreAddons
-%{_qtdir}/mkspecs/modules/qt_KCoreAddons.pri
 %{_qtdir}/doc/KF6CoreAddons.*
 
 %files -n %{libname}
