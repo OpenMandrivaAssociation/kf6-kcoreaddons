@@ -2,7 +2,7 @@
 
 %define libname %mklibname KF6CoreAddons
 %define devname %mklibname KF6CoreAddons -d
-#define git 20231103
+%define git 20240217
 
 # This is only required in a BSD context, but rpm's
 # cmake dependency generator doesn't understand
@@ -10,7 +10,7 @@
 %global __requires_exclude ^.*procstat.*
 
 Name: kf6-kcoreaddons
-Version: 5.249.0
+Version: 5.250.0
 Release: %{?git:0.%{git}.}1
 %if 0%{?git:1}
 Source0: https://invent.kde.org/frameworks/kcoreaddons/-/archive/master/kcoreaddons-master.tar.bz2#/kcoreaddons-%{git}.tar.bz2
