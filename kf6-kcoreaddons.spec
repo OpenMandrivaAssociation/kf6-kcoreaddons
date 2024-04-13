@@ -1,4 +1,5 @@
 %define stable %([ "$(echo %{version} |cut -d. -f2)" -ge 80 -o "$(echo %{version} |cut -d. -f3)" -ge 80 ] && echo -n un; echo -n stable)
+%define major %(echo %{version}|cut -d. -f1-2)
 
 %define libname %mklibname KF6CoreAddons
 %define devname %mklibname KF6CoreAddons -d
@@ -10,12 +11,12 @@
 %global __requires_exclude ^.*procstat.*
 
 Name: kf6-kcoreaddons
-Version: 6.0.0
-Release: %{?git:0.%{git}.}2
+Version: 6.1.0
+Release: %{?git:0.%{git}.}1
 %if 0%{?git:1}
 Source0: https://invent.kde.org/frameworks/kcoreaddons/-/archive/master/kcoreaddons-master.tar.bz2#/kcoreaddons-%{git}.tar.bz2
 %else
-Source0: http://download.kde.org/%{stable}/frameworks/%{version}/kcoreaddons-%{version}.tar.xz
+Source0: http://download.kde.org/%{stable}/frameworks/%{major}/kcoreaddons-%{version}.tar.xz
 %endif
 Summary: Qt addon library with a collection of non-GUI utilities
 URL: https://invent.kde.org/frameworks/kcoreaddons
