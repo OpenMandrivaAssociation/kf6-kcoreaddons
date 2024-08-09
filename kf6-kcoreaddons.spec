@@ -11,7 +11,7 @@
 %global __requires_exclude ^.*procstat.*
 
 Name: kf6-kcoreaddons
-Version: 6.4.0
+Version: 6.5.0
 Release: %{?git:0.%{git}.}1
 %if 0%{?git:1}
 Source0: https://invent.kde.org/frameworks/kcoreaddons/-/archive/master/kcoreaddons-master.tar.bz2#/kcoreaddons-%{git}.tar.bz2
