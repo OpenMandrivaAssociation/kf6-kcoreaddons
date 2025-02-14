@@ -11,7 +11,7 @@
 %global __requires_exclude ^.*procstat.*
 
 Name: kf6-kcoreaddons
-Version: 6.10.0
+Version: 6.11.0
 Release: %{?git:0.%{git}.}1
 %if 0%{?git:1}
 Source0: https://invent.kde.org/frameworks/kcoreaddons/-/archive/master/kcoreaddons-master.tar.bz2#/kcoreaddons-%{git}.tar.bz2
@@ -25,6 +25,7 @@ Group: System/Libraries
 BuildRequires: cmake
 BuildRequires: cmake(ECM)
 BuildRequires: python
+BuildRequires: python%{pyver}dist(build)
 BuildRequires: cmake(Qt6DBusTools)
 BuildRequires: cmake(Qt6DBus)
 BuildRequires: cmake(Qt6Network)
@@ -99,3 +100,4 @@ Qt addon library with a collection of non-GUI utilities
 %files -n %{libname}
 %{_libdir}/libKF6CoreAddons.so*
 %{_qtdir}/qml/org/kde/coreaddons
+%{_libdir}/python*/site-packages/KCoreAddons.cpython-*.so
