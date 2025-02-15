@@ -69,6 +69,14 @@ Development files (Headers etc.) for %{name}.
 
 Qt addon library with a collection of non-GUI utilities
 
+%package -n python-kcoreaddons
+Summary: Python bindings to KCoreAddons
+Group: Development/Python
+Requires: %{libname} = %{EVRD}
+
+%description -n python-kcoreaddons
+Python bindings to KCoreAddons
+
 %prep
 %autosetup -p1 -n kcoreaddons-%{?git:master}%{!?git:%{version}}
 # Disabling PCH on aarch64 below is a workaround for a compile time
@@ -103,4 +111,6 @@ Qt addon library with a collection of non-GUI utilities
 %files -n %{libname}
 %{_libdir}/libKF6CoreAddons.so*
 %{_qtdir}/qml/org/kde/coreaddons
+
+%files -n python-kcoreaddons
 %{_libdir}/python*/site-packages/KCoreAddons.cpython-*.so
