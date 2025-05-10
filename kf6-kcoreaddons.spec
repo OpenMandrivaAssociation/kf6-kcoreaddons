@@ -11,7 +11,7 @@
 %global __requires_exclude ^.*procstat.*
 
 Name: kf6-kcoreaddons
-Version: 6.13.0
+Version: 6.14.0
 Release: %{?git:0.%{git}.}1
 %if 0%{?git:1}
 Source0: https://invent.kde.org/frameworks/kcoreaddons/-/archive/master/kcoreaddons-master.tar.bz2#/kcoreaddons-%{git}.tar.bz2
@@ -48,6 +48,10 @@ BuildRequires: pkgconfig(shared-mime-info)
 # Those tools add very little, and have huge drawbacks.
 Requires: %{libname} = %{EVRD}
 
+BuildSystem:	cmake
+BuildOption:	-DBUILD_QCH:BOOL=ON
+BuildOption:	-DKDE_INSTALL_USE_QT_SYS_PATHS:BOOL=ON
+
 %description
 Qt addon library with a collection of non-GUI utilities
 
@@ -77,27 +81,6 @@ Requires: %{libname} = %{EVRD}
 %description -n python-kcoreaddons
 Python bindings to KCoreAddons
 
-%prep
-%autosetup -p1 -n kcoreaddons-%{?git:master}%{!?git:%{version}}
-# Disabling PCH on aarch64 below is a workaround for a compile time
-# error because of an alleged PIE mismatch between PCHs and test cases
-%cmake \
-	-DBUILD_QCH:BOOL=ON \
-	-DBUILD_WITH_QT6:BOOL=ON \
-	-DKDE_INSTALL_USE_QT_SYS_PATHS:BOOL=ON \
-%ifarch %{aarch64}
-	-DENABLE_PCH:BOOL=OFF \
-%endif
-	-G Ninja
-
-%build
-%ninja_build -C build
-
-%install
-%ninja_install -C build
-
-%find_lang %{name} --all-name --with-qt --with-html
-
 %files -f %{name}.lang
 %{_datadir}/qlogging-categories6/kcoreaddons.*
 %{_datadir}/kf6
@@ -107,6 +90,7 @@ Python bindings to KCoreAddons
 %{_includedir}/KF6/KCoreAddons
 %{_libdir}/cmake/KF6CoreAddons
 %{_qtdir}/doc/KF6CoreAddons.*
+%{_libdir}/pkgconfig/KF6CoreAddons.pc
 
 %files -n %{libname}
 %{_libdir}/libKF6CoreAddons.so*
@@ -114,3 +98,5 @@ Python bindings to KCoreAddons
 
 %files -n python-kcoreaddons
 %{_libdir}/python*/site-packages/KCoreAddons.cpython-*.so
+%{_includedir}/PySide6/KCoreAddons
+%{_datadir}/PySide6/typesystems/typesystem_kcoreaddons.xml
